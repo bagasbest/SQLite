@@ -7,6 +7,9 @@
     <string name="choose_date_of_birth">choose date of birth</string>
     <string name="your_description">Your description . . .</string>
     <string name="short_of_your_description">Short of your description</string>
+    <string name="invalid_mame">Sorry, name must not empty</string>
+    <string name="invalid_desc">Sorry, description must not empty</string>
+    <string name="invalid_phone">Sorry, phone number must not empty</string>
 
 
     <string-array name="work_job">

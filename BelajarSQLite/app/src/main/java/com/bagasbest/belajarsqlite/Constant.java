@@ -13,7 +13,7 @@ public class Constant {
     public static final String C_IMAGE = "IMAGE";
     public static final String C_BIO = "BIO";
     public static final String C_PHONE = "PHONE";
-    public static final String C_EMAIL = "EMAIL";
+    public static final String C_JOB = "JOB";
     public static final String C_DOB = "DON";
     public static final String C_ADDED_TIME = "ADDED_TIME_STAMP";
     public static final String C_UPDATED_TIME = "UPDATED_TIME_STAMP";
@@ -25,7 +25,7 @@ public class Constant {
             + C_IMAGE + "TEXT,"
             + C_BIO + "TEXT,"
             + C_PHONE + "TEXT,"
-            + C_EMAIL + "TEXT,"
+            + C_JOB + "JOB,"
             + C_DOB + "TEXT,"
             + C_ADDED_TIME + "TEXT,"
             + C_UPDATED_TIME + "TEXT,"

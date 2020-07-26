@@ -33,7 +33,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     }
 
     public long insertRecord(String name, String image, String bio, String phone,
-                             String email, String dob, String addedTime,
+                             String job, String dob, String addedTime,
                              String updatedTime ){
         //get writeable database becauser we want to erite data
         SQLiteDatabase db = this.getWritableDatabase();
@@ -46,7 +46,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         cv.put(Constant.C_IMAGE, image);
         cv.put(Constant.C_BIO, bio);
         cv.put(Constant.C_PHONE, phone);
-        cv.put(Constant.C_EMAIL, email);
+        cv.put(Constant.C_JOB, job);
         cv.put(Constant.C_DOB, dob);
         cv.put(Constant.C_ADDED_TIME, addedTime);
         cv.put(Constant.C_UPDATED_TIME, updatedTime);
