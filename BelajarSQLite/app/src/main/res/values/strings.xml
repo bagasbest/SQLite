@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Belajar SQLite</string>
+    <string name="image">image</string>
+    <string name="nama_lengkap">Nama lengkap</string>
+    <string name="nomor_handphone">Nomor handphone</string>
+    <string name="pekerjaan">pekerjaan</string>
+    <string name="choose_date_of_birth">choose date of birth</string>
+    <string name="your_description">Your description . . .</string>
+    <string name="short_of_your_description">Short of your description</string>
+
+
+    <string-array name="work_job">
+        <item>Business</item>
+        <item>Civil Servant</item>
+        <item>Police</item>
+        <item>Army</item>
+        <item>Doctor</item>
+        <item>Lecturer</item>
+        <item>Driver</item>
+        <item>Student</item>
+        <item>Programmer</item>
+        <item>Graphic Designer</item>
+    </string-array>
 </resources>
