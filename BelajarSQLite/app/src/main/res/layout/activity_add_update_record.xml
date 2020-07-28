@@ -67,30 +67,30 @@
             android:layout_below="@+id/nameEt" />
 
         <EditText
-            android:id="@+id/phoneEt"
+            android:id="@+id/no_telp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/dobTv"
-            android:layout_marginTop="16dp"
             android:hint="@string/nomor_handphone"
             android:background="@drawable/rounded_et"
-            android:textSize="15sp"
             android:paddingStart="15dp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:inputType="phone"
-            android:autofillHints="no" />
+            android:layout_below="@+id/dobTv"
+            android:layout_marginTop="15dp"
+            android:textSize="15sp"
+            android:autofillHints="no"
+            android:inputType="text" />
 
         <Spinner
             android:id="@+id/workSp"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:textSize="15sp"
             android:paddingStart="15dp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:background="@drawable/rounded_et"
-            android:layout_below="@+id/phoneEt"
+            android:layout_below="@+id/no_telp"
             android:layout_marginTop="16dp" />
 
         <ImageView
@@ -103,7 +103,7 @@
             android:background="@drawable/shape_circle"
             android:contentDescription="@string/image"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="7dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="15dp"
             />
 

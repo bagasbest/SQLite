@@ -49,14 +49,14 @@ import static com.basgeekball.awesomevalidation.ValidationStyle.COLORATION;
 
 public class AddUpdateRecordActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
 
-    private EditText nameEt, phoneEt, descriptionEt;
+    private EditText nameEt, noEt, descriptionEt;
     private Spinner workSp;
     private TextView dobTv;
     private Button submitBtn;
     private Spinner spinner;
     private CircleImageView profileIv;
     private ImageView addProfileTv;
-    private String text, name, phone, job, dob, bio;
+    private String text, name, noTelp, job, dob, bio;
 
     private MyDbHelper dbHelper;
 
@@ -86,7 +86,7 @@ public class AddUpdateRecordActivity extends AppCompatActivity implements DatePi
 
         //casting view
         nameEt = findViewById(R.id.nameEt);
-        phoneEt = findViewById(R.id.phoneEt);
+        noEt = findViewById(R.id.no_telp);
         descriptionEt = findViewById(R.id.descriptionEt);
         workSp = findViewById(R.id.workSp);
         dobTv = findViewById(R.id.dobTv);
@@ -100,6 +100,9 @@ public class AddUpdateRecordActivity extends AppCompatActivity implements DatePi
         //init permission
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+
+
 
         dobTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,20 +136,23 @@ public class AddUpdateRecordActivity extends AppCompatActivity implements DatePi
     }
 
     private void inputData() {
+
         awesomeValidation = new AwesomeValidation(COLORATION);
         awesomeValidation.setColor(R.color.colorButton);
 
         //validation name
         awesomeValidation.addValidation(this, R.id.nameEt, RegexTemplate.NOT_EMPTY, R.string.invalid_mame);
         awesomeValidation.addValidation(this, R.id.descriptionEt, RegexTemplate.NOT_EMPTY, R.string.invalid_desc);
-        awesomeValidation.addValidation(this, R.id.phoneEt, RegexTemplate.NOT_EMPTY, R.string.invalid_phone);
+        awesomeValidation.addValidation(this, R.id.no_telp, RegexTemplate.NOT_EMPTY, R.string.invalid_phone);
 
-        if(awesomeValidation.validate()) {
+
+        if(awesomeValidation.validate()){
             name = ""+nameEt.getText().toString().trim();
-            phone = ""+phoneEt.getText().toString().trim();
-            job = ""+workSp.getSelectedItem().toString().trim();
+            noTelp = ""+noEt.getText().toString().trim();
+            job = ""+workSp.getSelectedItem().toString();
             dob = ""+dobTv.getText().toString().trim();
             bio = ""+descriptionEt.getText().toString().trim();
+
 
             //save to db
             String timestamp = ""+System.currentTimeMillis();
@@ -154,15 +160,18 @@ public class AddUpdateRecordActivity extends AppCompatActivity implements DatePi
                     ""+name,
                     ""+imageUri,
                     ""+bio,
-                    ""+phone,
+                    ""+noTelp,
                     ""+job,
                     ""+dob,
                     ""+timestamp,
-                    ""+timestamp);
+                    ""+timestamp
+            );
 
-            Toast.makeText(this, "Updated...", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(this,  id  + " Updated...", Toast.LENGTH_SHORT).show();
 
         }
+
 
     }
 
@@ -202,8 +211,8 @@ public class AddUpdateRecordActivity extends AppCompatActivity implements DatePi
     private void pickFromCamera() {
         //intent to pick image from camera
         ContentValues cv = new ContentValues();
-        cv.put(MediaStore.Images.Media.TITLE, "Image_Title");
-        cv.put(MediaStore.Images.Media.DESCRIPTION, "Image_Description");
+        cv.put(MediaStore.Images.Media.TITLE, "image title");
+        cv.put(MediaStore.Images.Media.DESCRIPTION, "image description");
 
         //put image uri
         imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv);
@@ -237,13 +246,13 @@ public class AddUpdateRecordActivity extends AppCompatActivity implements DatePi
 
     private boolean checkCameraPermission () {
         //check if  camera & storage permission enable or not
-        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 == (PackageManager.PERMISSION_GRANTED);
 
-        boolean result2 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 == (PackageManager.PERMISSION_GRANTED);
 
-        return result1 && result2;
+        return result && result1;
     }
 
     private void requestCameraPermission () {
@@ -290,7 +299,6 @@ public class AddUpdateRecordActivity extends AppCompatActivity implements DatePi
                         pickFromCamera();
                     } else {
                         Toast.makeText(this, "Camera & Storage permission must enabled to upload image", Toast.LENGTH_SHORT).show();
-                        requestCameraPermission();
                     }
                 }
             }
@@ -302,10 +310,9 @@ public class AddUpdateRecordActivity extends AppCompatActivity implements DatePi
                     boolean storageAccepted = grantResults[0] ==PackageManager.PERMISSION_GRANTED;
 
                     if(storageAccepted) {
-                        pickFromCamera();
+                        pickFromGallery();
                     } else {
                         Toast.makeText(this, "Storage permission must enabled to upload image", Toast.LENGTH_SHORT).show();
-                        requestStoragePermission();;
                     }
                 }
             }
